@@ -7,10 +7,12 @@ import org.json.JSONObject;
 class ParseJSON {
     static String[] names;
     static String[] dates;
+    static String[] images;
 
     private static final String JSON_ARRAY = "events";
     private static final String EVENT_NAME_ARRAY = "name";
     private static final String EVENT_DATE_ARRAY = "start";
+    private static final String EVENT_IMAGE_ARRAY = "logo";
 
     private String json;
 
@@ -26,6 +28,7 @@ class ParseJSON {
 
             names = new String[events.length()];
             dates = new String[events.length()];
+            images = new String[events.length()];
 
             for(int i = 0; i< events.length(); i++){
                 JSONObject eventData = events.getJSONObject(i);
@@ -40,6 +43,11 @@ class ParseJSON {
                 // Slice dateStr to remove time
                 String[] startDate = dateStr.split("T");
                 dates[i] = startDate[0];
+
+                // Image URL
+                JSONObject eventImageArray = eventData.getJSONObject(EVENT_IMAGE_ARRAY);
+                JSONObject eventOriginalArray = eventImageArray.getJSONObject("original");
+                images[i] = eventOriginalArray.getString("url");
             }
         } catch (JSONException e) {
             e.printStackTrace();
