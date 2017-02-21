@@ -5,10 +5,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 class ParseJSON {
-    static String[] EVENT_NAME;
+    static String[] names;
+    static String[] dates;
 
     private static final String JSON_ARRAY = "events";
     private static final String EVENT_NAME_ARRAY = "name";
+    private static final String EVENT_DATE_ARRAY = "start";
 
     private String json;
 
@@ -22,14 +24,22 @@ class ParseJSON {
             response = new JSONObject(json);
             JSONArray events = response.getJSONArray(JSON_ARRAY);
 
-            EVENT_NAME = new String[events.length()];
+            names = new String[events.length()];
+            dates = new String[events.length()];
 
             for(int i = 0; i< events.length(); i++){
                 JSONObject eventData = events.getJSONObject(i);
 
                 // Event Name
                 JSONObject eventNameArray = eventData.getJSONObject(EVENT_NAME_ARRAY);
-                EVENT_NAME[i] = eventNameArray.getString("text");
+                names[i] = eventNameArray.getString("text");
+
+                // Start Date
+                JSONObject eventStartDateArray = eventData.getJSONObject(EVENT_DATE_ARRAY);
+                String dateStr = eventStartDateArray.getString("local");
+                // Slice dateStr to remove time
+                String[] startDate = dateStr.split("T");
+                dates[i] = startDate[0];
             }
         } catch (JSONException e) {
             e.printStackTrace();
