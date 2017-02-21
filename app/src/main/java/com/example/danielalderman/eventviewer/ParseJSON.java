@@ -5,10 +5,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 class ParseJSON {
-    static String[] content;
+    static String[] EVENT_NAME;
 
     private static final String JSON_ARRAY = "events";
-    private static final String EVENT_NAME = "name";
+    private static final String EVENT_NAME_ARRAY = "name";
 
     private String json;
 
@@ -22,11 +22,14 @@ class ParseJSON {
             response = new JSONObject(json);
             JSONArray events = response.getJSONArray(JSON_ARRAY);
 
-            content = new String[events.length()];
+            EVENT_NAME = new String[events.length()];
 
             for(int i = 0; i< events.length(); i++){
-                JSONObject eventNameArray = events.getJSONObject(i);
-                content[i] = eventNameArray.getString(EVENT_NAME);
+                JSONObject eventData = events.getJSONObject(i);
+
+                // Event Name
+                JSONObject eventNameArray = eventData.getJSONObject(EVENT_NAME_ARRAY);
+                EVENT_NAME[i] = eventNameArray.getString("text");
             }
         } catch (JSONException e) {
             e.printStackTrace();
