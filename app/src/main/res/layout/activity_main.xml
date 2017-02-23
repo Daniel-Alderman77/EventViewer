@@ -10,7 +10,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Get Data"
+        android:text="@string/get_data"
         android:id="@+id/buttonGet" />
 
     <ListView
