@@ -7,7 +7,7 @@
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/webView" >
+        android:id="@+id/webViewWidget" >
 
     </WebView>
 
@@ -16,6 +16,6 @@
         android:layout_height="wrap_content"
         android:text="@string/view_on_eventbrite"
         android:id="@+id/buttonView"
-        android:layout_alignBottom="@+id/webView" />
+        android:layout_alignBottom="@+id/webViewWidget" />
 
 </RelativeLayout>

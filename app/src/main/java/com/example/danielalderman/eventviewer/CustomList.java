@@ -1,11 +1,11 @@
 package com.example.danielalderman.eventviewer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 class CustomList extends ArrayAdapter<String> {
@@ -26,9 +26,9 @@ class CustomList extends ArrayAdapter<String> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItem = inflater.inflate(R.layout.list_view_layout, null, true);
+        final View listViewItem = inflater.inflate(R.layout.list_view_layout, null, true);
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
         TextView textViewDate = (TextView) listViewItem.findViewById(R.id.textViewDate);
 
@@ -38,6 +38,15 @@ class CustomList extends ArrayAdapter<String> {
         textViewName.setText(names[position]);
         textViewDate.setText(dates[position]);
         imageView.setText(images[position]);
+
+        listViewItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View list) {
+                Intent intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra("URL", webViews[position]);
+                context.startActivity(intent);
+            }
+        });
 
         return listViewItem;
     }
