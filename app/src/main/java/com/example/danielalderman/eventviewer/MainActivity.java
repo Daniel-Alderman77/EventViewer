@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void showJSON(String json){
         ParseJSON parseJSON = new ParseJSON(json);
         parseJSON.parse();
-        CustomList customList = new CustomList(this, ParseJSON.names, ParseJSON.dates, ParseJSON.images);
+        CustomList customList = new CustomList(this, ParseJSON.names, ParseJSON.dates, ParseJSON.images, ParseJSON.webViews);
         listView.setAdapter(customList);
     }
 

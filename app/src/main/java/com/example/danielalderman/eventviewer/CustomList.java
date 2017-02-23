@@ -12,14 +12,17 @@ class CustomList extends ArrayAdapter<String> {
     private String[] names;
     private String[] dates;
     private String[] images;
+    private String[] webViews;
+
     private Activity context;
 
-    CustomList(Activity context, String[] names, String[] dates, String[] images) {
+    CustomList(Activity context, String[] names, String[] dates, String[] images, String[] webViews) {
         super(context, R.layout.list_view_layout, names);
         this.context = context;
         this.names = names;
         this.dates = dates;
         this.images = images;
+        this.webViews = webViews;
     }
 
     @Override
