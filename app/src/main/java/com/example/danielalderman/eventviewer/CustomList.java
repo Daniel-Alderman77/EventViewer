@@ -41,14 +41,17 @@ class CustomList extends ArrayAdapter<String> {
 
         Picasso.with(context).load(images[position]).into(imageView);
 
-        listViewItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View list) {
-                Intent intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra("URL", webViews[position]);
-                context.startActivity(intent);
-            }
-        });
+        /*
+        On click listener to open WebViewActivity
+         */
+//        listViewItem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View list) {
+//                Intent intent = new Intent(context, WebViewActivity.class);
+//                intent.putExtra("URL", webViews[position]);
+//                context.startActivity(intent);
+//            }
+//        });
 
         return listViewItem;
     }
