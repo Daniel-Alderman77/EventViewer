@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 class CustomList extends ArrayAdapter<String> {
     private String[] names;
@@ -31,13 +34,12 @@ class CustomList extends ArrayAdapter<String> {
         final View listViewItem = inflater.inflate(R.layout.list_view_layout, null, true);
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
         TextView textViewDate = (TextView) listViewItem.findViewById(R.id.textViewDate);
-
-        // TODO - Add Custom ImageView
-        TextView imageView = (TextView) listViewItem.findViewById(R.id.imageView);
+        ImageView imageView = (ImageView) listViewItem.findViewById(R.id.imageView);
 
         textViewName.setText(names[position]);
         textViewDate.setText(dates[position]);
-        imageView.setText(images[position]);
+
+        Picasso.with(context).load(images[position]).into(imageView);
 
         listViewItem.setOnClickListener(new View.OnClickListener() {
             @Override
