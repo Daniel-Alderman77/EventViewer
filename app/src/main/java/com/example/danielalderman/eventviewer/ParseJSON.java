@@ -49,8 +49,7 @@ class ParseJSON {
 
                 // Image URL
                 JSONObject eventImageArray = eventData.getJSONObject(EVENT_IMAGE_ARRAY);
-                JSONObject eventOriginalArray = eventImageArray.getJSONObject("original");
-                images[i] = eventOriginalArray.getString("url");
+                images[i] = eventImageArray.getString("url");
 
                 // Web View
                 JSONObject eventDescriptionArray = eventData.getJSONObject(EVENT_DESCRIPTION_ARRAY);
